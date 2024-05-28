@@ -43,10 +43,10 @@ const HomeHero = () => {
     transition={{duration:1, delay:1.2}}
     className='flex items-center justify-center'>
         <Image
-        src="/umar.png"
-        width={500}
+        src="/facial-recognition.webp"
+        width={400}
         loading='eager'
-        height={500}
+        height={400}
         alt="face detection app"
         />
     </motion.div>

@@ -16,7 +16,6 @@ export async function POST(req, res) {
   phoneNumber:      ${phoneNumber}
   message:          ${message}
   `
-    console.log(data)
     const mailSent = await Main(
         data,
     )

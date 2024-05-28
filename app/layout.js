@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="dark text-foreground bg-background overflow-x-hidden">
+      <body className="text-foreground bg-background overflow-x-hidden">
         <UiProvider>
         <Toaster/>
 <ConditionalHeader/>

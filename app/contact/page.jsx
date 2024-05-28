@@ -1,10 +1,10 @@
 "use client";
 import { containerY } from "@/components/AnimationContainer";
 import Wrapper from "@/components/Wrapper";
-import { Button, Spinner } from "@nextui-org/react";
+import { Button, Card, CardBody, Spinner } from "@nextui-org/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import {motion} from "framer-motion"
@@ -43,14 +43,17 @@ const Contact = () => {
   return (
     <>
       <Wrapper>
-    <div className="max-w-lg mx-auto w-full min-h-screen flex-col flex items-center justify-center">
+   
+    <div className="max-w-md mx-auto w-full min-h-screen flex-col flex items-center justify-center">
+      <Card>
+    <CardBody className="overflow-hidden p-10">
       <motion.div
       initial="hidden"
       animate="visible"
       variants = {containerY(0)}
       className="text-center mb-5">
-        <h2 className="text-xl font-bold">Contact Us</h2>
-        <p>Feel free to contact with us</p>
+        <h2 className="text-2xl font-bold">Contact Us</h2>
+        <p className="text-[18px]">Feel free to contact with us</p>
       </motion.div>
     <motion.form
     initial="hidden"
@@ -106,7 +109,10 @@ const Contact = () => {
             </Button>
           </div>
         </motion.form>
-    </div>
+
+    </CardBody>
+   </Card>
+   </div>
 
       </Wrapper>
     </>
