@@ -9,10 +9,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="light text-foreground bg-background">
+      <body className="dark text-foreground bg-background overflow-x-hidden">
         <UiProvider>
        <main className="min-h-screen">
        {children}
+
        </main>
         </UiProvider>
       </body>

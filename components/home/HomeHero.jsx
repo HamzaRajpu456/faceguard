@@ -5,17 +5,10 @@ import { Button, Image } from '@nextui-org/react'
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { TfiHeadphoneAlt } from "react-icons/tfi";
 import {motion} from "framer-motion"
+import NextLink from "next/link"
+import { container } from '../AnimationContainer';
 const HomeHero = () => {
-    const container = (delay)=>(
-        {
-            hidden:{x: -100, opacity:0},
-            visible:{
-                x:0,
-                opacity:1,
-                transition:{duration:0.5,delay: delay}
-            }
-        }
-    )
+   
   return (
    <Wrapper>
    <div className="flex items-center justify-center min-h-screen">
@@ -25,21 +18,21 @@ const HomeHero = () => {
      variants={container(0)}
      initial="hidden"
      animate="visible"
-        className='tracking-tight mb-5 font-semibold text-3xl sm:text-4xl md:text-5xl text-pretty leading-10'>Streamline Identity <span className='tracking-tight  from-[#FF1CF7] to-[#b249f8] bg-clip-text text-transparent bg-gradient-to-b'>Verification</span> with Facial Recognition</motion.h1>
+        className='tracking-tight mb-7 font-semibold text-3xl sm:text-4xl md:text-6xl text-pretty leading-10'>Streamline Identity <span className='tracking-tight  from-[#FF1CF7] to-[#b249f8] bg-clip-text text-transparent bg-gradient-to-b'>Verification</span> with Facial Recognition</motion.h1>
         <motion.p
          variants={container(0.5)}
          initial="hidden"
          animate="visible"
-        className='text-large mb-5'>Embrace safer communities with <span className='underline underline-offset-4'>FaceGuard</span> global face recognition technology, enhancing identity verification for businesses.</motion.p>
+        className='text-large mb-10'>Embrace safer communities with <span className='underline underline-offset-4'>FaceGuard</span> global face recognition technology, enhancing identity verification for businesses.</motion.p>
         <motion.div
          variants={container(1)}
          initial="hidden"
          animate="visible"
         className='space-x-3'>
-            <Button endContent={<TfiHeadphoneAlt />} color="primary" variant="shadow">
+            <Button size='lg' endContent={<TfiHeadphoneAlt />} color="primary" variant="shadow">
                 Talk to an Expert
             </Button>
-            <Button endContent={<FaArrowRightFromBracket />} color="default" variant="bordered">
+            <Button size='lg' as={NextLink} href="/signin" endContent={<FaArrowRightFromBracket />} color="default" variant="bordered">
                 Let's Start
             </Button>
         </motion.div>
@@ -50,7 +43,7 @@ const HomeHero = () => {
     transition={{duration:1, delay:1.2}}
     className='flex items-center justify-center'>
         <Image
-        src="/face-detection.webp"
+        src="/umar.png"
         width={500}
         loading='eager'
         height={500}
