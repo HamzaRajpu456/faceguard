@@ -1,5 +1,6 @@
 import "./globals.css";
 import UiProvider from "@/providers/UiProvider";
+import ConditionalHeader from "@/components/ConditionalHeader";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="dark text-foreground bg-background overflow-x-hidden">
         <UiProvider>
+<ConditionalHeader/>
        <main className="min-h-screen">
        {children}
 
