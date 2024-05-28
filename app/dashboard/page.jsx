@@ -33,6 +33,7 @@ import {motion} from "framer-motion"
 import { useRouter } from 'next/navigation';
 import CreateStudent from "@/components/modals/CreateStudent";
 import { containerY } from "@/components/AnimationContainer";
+import DeleteStudent from "@/components/modals/DeleteStudent";
 
 const statusColorMap = {
   active: "success",
@@ -40,35 +41,34 @@ const statusColorMap = {
   vacation: "warning",
 };
 
-
 export default function Dashboard() {
   const [students, setStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [createMessage,setCreateMessage] = useState();
+  const [deleteMessage,setDeleteMessage] = useState();
   const router = useRouter();
 
 
-//   useEffect(() => {
-//     // Check if user is already logged in
-//     const unsubscribe = onAuthStateChanged(auth, (user) => {
-//       if (!user) {
-//         // If user is not logged in, redirect to signin
-//         router.push('/signin');
-//       }
-//     });
+  useEffect(() => {
+    // Check if user is already logged in
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // If user is not logged in, redirect to signin
+        router.push('/signin');
+      }
+    });
 
-//     // Cleanup function
-//     return () => {
-//       unsubscribe();
-//     };
-//   }, []);
+    // Cleanup function
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 const fetchStudents = async () => {
   try {
-    const res = await axios.get(`http://127.0.0.1:5002/students`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/students`);
     const studentsData = res.data;
     if (studentsData) {
       const allStudents = Object.values(studentsData);
-      console.log(allStudents)
       setStudents(allStudents);
     }
   } catch (error) {
@@ -85,13 +85,14 @@ const fetchStudents = async () => {
     fetchStudents()
   },[])
 useEffect(()=>{
-  if(createMessage){
+  if(createMessage || deleteMessage){
     const timer = setTimeout(()=>{
       setCreateMessage("")
+      setDeleteMessage("")
     },3000)
     return ()=>clearTimeout(timer)
   }
-},[createMessage])
+},[createMessage,deleteMessage])
   const headerColumns = [
     { name: "STUDENT ID", uid: "student_id", sortable: true },
     { name: "STUDENT NAME", uid: "student_name", sortable: true },
@@ -116,7 +117,7 @@ useEffect(()=>{
       case "actions":
         return (
           <div className="relative flex justify-center items-center gap-2">
-            <Tooltip content="Details">
+            {/* <Tooltip content="Details">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <EyeFilledIcon />
               </span>
@@ -125,12 +126,8 @@ useEffect(()=>{
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <EditIcon />
               </span>
-            </Tooltip>
-            <Tooltip color="danger" content="Delete user">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon />
-              </span>
-            </Tooltip>
+            </Tooltip> */}
+          <DeleteStudent setDeleteMessage={setDeleteMessage} onUpdateStudent={onUpdateStudent} studentId={student.student_id}/>
           </div>
         );
       default:
@@ -147,9 +144,10 @@ useEffect(()=>{
             </div>
 
 {createMessage && <p className="text-success text-large">{createMessage}</p>}
+{deleteMessage && !createMessage && <p className="text-danger text-large">{deleteMessage}</p>}
         </div>
     );
-}, [createMessage]);
+}, [createMessage,deleteMessage]);
 
 
   return (
@@ -159,7 +157,7 @@ useEffect(()=>{
      initial="hidden"
      animate="visible"
      variants={containerY(0)}
-     
+     className="py-10"
      >
      <Table
       topContent={

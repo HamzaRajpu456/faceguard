@@ -62,7 +62,7 @@ if(imageUrl){
 
     try {
       const response = await axios.post(
-        `http://127.0.0.1:5002/students/create`,
+        `${process.env.NEXT_PUBLIC_SERVER}/students/create`,
         formDataToSend,
         {
           headers: {

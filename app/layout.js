@@ -1,6 +1,7 @@
 import "./globals.css";
 import UiProvider from "@/providers/UiProvider";
 import ConditionalHeader from "@/components/ConditionalHeader";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="dark text-foreground bg-background overflow-x-hidden">
         <UiProvider>
+        <Toaster/>
 <ConditionalHeader/>
        <main className="min-h-screen">
        {children}

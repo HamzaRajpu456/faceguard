@@ -13,10 +13,12 @@ import toast from 'react-hot-toast'
 import Wrapper from '../Wrapper'
 import Image from 'next/image'
 import faceguard from "../../public/faceguard.png"
-
+import CreateUser from '../modals/CreateUser'
+import ChangePassword from '../modals/ChangePassword'
 const Signin = () => {
     const [isVisible, setIsVisible] = useState(false); 
     const router = useRouter();
+    const [createMessage,setCreateMessage] = useState();
 
 const { register, handleSubmit, formState: { errors } } = useForm({
     reValidateMode: 'onChange',
@@ -40,7 +42,7 @@ const { register, handleSubmit, formState: { errors } } = useForm({
           unsubscribe();
         };
       }, []);
-      
+    
       const submitForm = async (data) => {
         const { email, password } = data;
         signInWithEmailAndPassword(auth, email, password)
@@ -128,15 +130,13 @@ const { register, handleSubmit, formState: { errors } } = useForm({
                 </div>
                 <div className='flex justify-between items-center mb-10'>
                     <Checkbox defaultSelected size="sm">Remember me</Checkbox>
-                    <Link className='text-danger text-sm' href="/">Forget Password?</Link>
+                    <ChangePassword/>
                 </div>
                 <div className='flex gap-5'>
                     <Button type='submit' className='w-1/2' color="primary" variant="solid">
                         Signin
                     </Button>
-                    <Button className='w-1/2' color="primary" variant="bordered">
-                       Create Account
-                    </Button>
+                   <CreateUser setCreateMessage={setCreateMessage}/>
                 </div>
             </form>
             <p className='text-sm text-default-400'>By sign up you agree to our term and that you have read our data policy.</p>

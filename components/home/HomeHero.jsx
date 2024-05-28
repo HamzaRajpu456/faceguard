@@ -11,7 +11,7 @@ const HomeHero = () => {
    
   return (
    <Wrapper>
-   <div className="flex items-center justify-center min-h-screen">
+   <div className="flex items-center justify-center min-h-screen py-20 md:py-0">
    <div className="md:grid md:grid-cols-2 md:gap-10 space-y-10 md:space-y-0">
    <section className='flex flex-col text-center max-w-md mx-auto md:max-w-full md:text-start justify-center'>
         <motion.h1
@@ -29,11 +29,11 @@ const HomeHero = () => {
          initial="hidden"
          animate="visible"
         className='space-x-3'>
-            <Button size='lg' endContent={<TfiHeadphoneAlt />} color="primary" variant="shadow">
+            <Button as={NextLink} href="/contact" size='lg' endContent={<TfiHeadphoneAlt />} color="primary" variant="shadow">
                 Talk to an Expert
             </Button>
             <Button size='lg' as={NextLink} href="/signin" endContent={<FaArrowRightFromBracket />} color="default" variant="bordered">
-                Let's Start
+                Let&apos;s Start
             </Button>
         </motion.div>
     </section>
